@@ -1,76 +1,111 @@
-# Sassとは
+# Sassの書き方
 
-cssを効率的に書く記法。
-下記のようにcssをネストして記述することが可能で、コード量をPureなcssよりも減らすことができます。
-
-ただしSassはそのままhtmlで読み込こんで使用することはできない。Sassをcssに変換（コンパイル）して使用する必要があります。
-
-```css
-/* css */
-ul {
-    padding: 0;
-}
-ul li{
-　　margin: auto;
-}
-ul li a{
-　　color: #fff;
-}
-```
+## scssは子要素は入れ子で書ける
 
 ```scss
-/* scss Sassにはsass記法とscss記法の2つがあり、scss記法が一般的に使われる */
-ul {
-    padding: 0;
-    li {
-        margin: auto;
-        a {
-            color: #fff;
-        }
+// scssでの入れ子の書き方
+#content {
+    background-color: #e1e1e1;
+    .second-title {
+        font-size: 0.8em;
+        text-decoration: underline #90c23a;
     }
 }
 ```
 
-## 使い方
-Windowsの場合、RubyInstallerからRubyをインストールする（OS Xの場合は不要です）。
-
-https://rubyinstaller.org/
-
-Rubyインストール後にgemをアップデートする。
-
-```bash
-gem install rubygems-update --source http://rubygems.org/
-update_rubygems
+```css
+/* 上記のscssはこのcssのようにコンパイルされる */
+#content {
+    background-color: #e1e1e1;
+}
+#content .second-title {
+    font-size: 0.8em;
+    text-decoration: underline #90c23a;
+}
 ```
 
-gemアップデート後にSassをインストールする。
-
-```bash
-gem install sass
+```scss
+// scssでの入れ子の書き方
+ul.nav li a {
+    padding-left: 20px;
+    padding-right: 20px;
+    &:hover { // &は親要素を表す
+        color: #fff;
+        text-underline-position: left;
+        text-decoration: none;
+    }
+}
 ```
 
-## Sassを使ってみる
-
-Bracketsの場合「Brackets Open Terminal」をインストールする。
-
-ファイルツリーを右クリックし、ターミナル（cmd or powershell）を起動し、以下のコマンドを入力する。
-
-![terminal](https://user-images.githubusercontent.com/35711528/36238340-493a15ee-1245-11e8-888e-3ca5ae9d5917.png)
-
-*input.scss を用意すること。
-
-```bash
-sass input.scss output.css
+```css
+/* 上記のscssはこのcssのようにコンパイルされる */
+ul.nav li a {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+ul.nav li a:hover {
+    color: #fff;
+    text-underline-position: left;
+    text-decoration: none;
+}
 ```
 
-成功すると
-output.cssが作成される。
+## 変数を使う
 
-自動でコンパイルするためには以下のように実行する
+```scss
+// scssは$で変数を使える
+$whitecolor: #fff;
+main {
+    background-color: $whitecolor;
+}
+```
 
-```bash
-sass --watch input.scss:output.css
+```css
+/* 上記のscssはこのcssのようにコンパイルされる */
+main {
+    background-color: #fff;
+}
+```
+
+## 継承を使う
+
+```scss
+.under-line-extend {
+    content: "";
+    position: absolute;
+    left: 50%;
+    margin-left: -16px;
+    height: 10px;
+    width: 32px;
+    border-bottom: 2px solid $blackcolor;
+}
+
+.info-content {
+    @extend .under-line-extend;
+    top: 67%;
+}
+```
+
+```css
+/* 上記のscssはこのcssのようにコンパイルされる */
+.info-content {
+  content: "";
+  position: absolute;
+  left: 50%;
+  margin-left: -16px;
+  height: 10px;
+  width: 32px;
+  border-bottom: 2px solid #000;
+}
+.info-content {
+    top: 67%;
+}
 ```
 
 ## 課題
-Sassのインストールから自動コンパイル実行までを実施してください。
+
+上記の入れ子・変数・継承等を利用して課題サイトを作成してください。
+
+## 参考
+
+http://373.hatenadiary.jp/entry/2017/05/31/143301
