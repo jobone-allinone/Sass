@@ -108,4 +108,10 @@ main {
 
 ## 参考
 
+「ドットインストール Sass入門」をざっくり一周した
+
 http://373.hatenadiary.jp/entry/2017/05/31/143301
+
+公式ドキュメント
+
+http://sass-lang.com/documentation/
