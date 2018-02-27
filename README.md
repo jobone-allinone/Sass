@@ -51,7 +51,7 @@ gem install sass
 
 ## Sassを使ってみる
 
-Bracketsの場合「Brackets Open Terminal」をインストールする。
+Bracketsの場合プラグイン「Open project in terminal」をインストールする。
 
 ファイルツリーを右クリックし、ターミナル（cmd or powershell）を起動し、以下のコマンドを入力する。
 
